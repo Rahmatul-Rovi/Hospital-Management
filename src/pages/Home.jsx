@@ -123,11 +123,12 @@ const Home = () => {
           
           {/* Eikhane Link use kora hoyeche jate FindDoctors page-e filter niye jay */}
          // Home.jsx er Link ta erom koro
+{/* Home.jsx er card link update koro */}
 <Link 
   to={`/appointments?category=${service.title.toLowerCase().replace(/\s+/g, '-')}`} 
-  className="text-blue-600 font-bold hover:underline"
+  className="text-blue-600 font-bold hover:underline inline-flex items-center gap-1 transition-all hover:gap-2"
 >
-  Explore More →
+  Explore More <span>→</span>
 </Link>
         </div>
       ))}
