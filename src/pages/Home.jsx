@@ -122,12 +122,13 @@ const Home = () => {
           <p className="text-gray-500 leading-relaxed mb-6">{service.desc}</p>
           
           {/* Eikhane Link use kora hoyeche jate FindDoctors page-e filter niye jay */}
-          <Link 
-            to={`/appointments?category=${service.category}`} 
-            className="text-blue-600 font-bold hover:underline inline-block"
-          >
-            Explore More →
-          </Link>
+         // Home.jsx er Link ta erom koro
+<Link 
+  to={`/appointments?category=${service.title.toLowerCase().replace(/\s+/g, '-')}`} 
+  className="text-blue-600 font-bold hover:underline"
+>
+  Explore More →
+</Link>
         </div>
       ))}
     </div>

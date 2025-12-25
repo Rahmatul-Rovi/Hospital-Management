@@ -1,56 +1,29 @@
 
-[
-  {
-    "id": 1,
-    "name": "Dr. Rahmatul Rovi",
-    "specialty": "Cardiologist",
-    "experience": "10 years",
-    "image": "/images/rahmatul.jpg",
-    "fees": 1000,
-    "rating": 4.9
-  },
-  {
-    "id": 2,
-    "name": "Dr. Anfal Ratul",
-    "specialty": "Neurologist",
-    "experience": "12 years",
-    "image": "/images/anfal.webp",
-    "fees": 1200,
-    "rating": 4.8
-  },
-  {
-    "id": 3,
-    "name": "Dr. Ahmed Rayhan",
-    "specialty": "Pediatrician",
-    "experience": "8 years",
-    "image": "https://t4.ftcdn.net/jpg/03/20/52/31/360_F_320523164_L7raauGi99GuWnmLa1pPgcK18RBOdtqZ.jpg",
-    "fees": 800,
-    "rating": 4.7
-  },
+
+ 
  [
   { "id": 1, "name": "Dr. Ariful Islam", "specialty": "cardiology", "image": "https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg", "experience": "10 Years", "fees": 1000 },
-  { "id": 2, "name": "Dr. Sarah Ahmed", "specialty": "dental", "image": "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg", "experience": "8 Years", "fees": 800 },
+  { "id": 2, "name": "Dr. Sarah Ahmed", "specialty": "dental-care", "image": "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg", "experience": "8 Years", "fees": 800 },
   { "id": 3, "name": "Dr. Kamrul Hasan", "specialty": "neurology", "image": "https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg", "experience": "12 Years", "fees": 1500 },
   { "id": 4, "name": "Dr. Nilufa Yasmin", "specialty": "cardiology", "image": "https://images.pexels.com/photos/4173239/pexels-photo-4173239.jpeg", "experience": "15 Years", "fees": 1200 },
   { "id": 5, "name": "Dr. Rakib Hasan", "specialty": "pediatrics", "image": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg", "experience": "7 Years", "fees": 700 },
   { "id": 6, "name": "Dr. Anika Tabassum", "specialty": "eye-care", "image": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg", "experience": "9 Years", "fees": 900 },
   { "id": 7, "name": "Dr. Tanvir Rahman", "specialty": "orthopedics", "image": "https://images.pexels.com/photos/3714743/pexels-photo-3714743.jpeg", "experience": "11 Years", "fees": 1100 },
-  { "id": 8, "name": "Dr. Mehedi Hasan", "specialty": "dental", "image": "https://images.pexels.com/photos/3845860/pexels-photo-3845860.jpeg", "experience": "6 Years", "fees": 600 },
+  { "id": 8, "name": "Dr. Mehedi Hasan", "specialty": "dental-care", "image": "https://images.pexels.com/photos/3845860/pexels-photo-3845860.jpeg", "experience": "6 Years", "fees": 600 },
   { "id": 9, "name": "Dr. S.M. Zulfiqar", "specialty": "cardiology", "image": "https://images.pexels.com/photos/3279197/pexels-photo-3279197.jpeg", "experience": "18 Years", "fees": 2000 },
-  { "id": 10, "name": "Dr. Tanura Khan", "specialty": "dental", "image": "https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg", "experience": "5 Years", "fees": 500 },
+  { "id": 10, "name": "Dr. Tanura Khan", "specialty": "dental-care", "image": "https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg", "experience": "5 Years", "fees": 500 },
   { "id": 11, "name": "Dr. Rebecca Gomez", "specialty": "neurology", "image": "https://images.pexels.com/photos/7578803/pexels-photo-7578803.jpeg", "experience": "14 Years", "fees": 1800 },
   { "id": 12, "name": "Dr. Shaila Shormi", "specialty": "pediatrics", "image": "https://images.pexels.com/photos/3902484/pexels-photo-3902484.jpeg", "experience": "10 Years", "fees": 1000 },
   { "id": 13, "name": "Dr. Mahbubul Alam", "specialty": "orthopedics", "image": "https://images.pexels.com/photos/4225880/pexels-photo-4225880.jpeg", "experience": "20 Years", "fees": 2500 },
   { "id": 14, "name": "Dr. Faisal Karim", "specialty": "eye-care", "image": "https://images.pexels.com/photos/4989135/pexels-photo-4989135.jpeg", "experience": "6 Years", "fees": 700 },
   { "id": 15, "name": "Dr. Jamil Hossain", "specialty": "cardiology", "image": "https://images.pexels.com/photos/4059435/pexels-photo-4059435.jpeg", "experience": "9 Years", "fees": 900 },
-  { "id": 16, "name": "Dr. Nusrat Jahan", "specialty": "dental", "image": "https://images.pexels.com/photos/6294448/pexels-photo-6294448.jpeg", "experience": "4 Years", "fees": 400 },
+  { "id": 16, "name": "Dr. Nusrat Jahan", "specialty": "dental-care", "image": "https://images.pexels.com/photos/6294448/pexels-photo-6294448.jpeg", "experience": "4 Years", "fees": 400 },
   { "id": 17, "name": "Dr. Ahsan Habib", "specialty": "neurology", "image": "https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg", "experience": "22 Years", "fees": 3000 },
   { "id": 18, "name": "Dr. Farhana Yasmin", "specialty": "pediatrics", "image": "https://images.pexels.com/photos/7108344/pexels-photo-7108344.jpeg", "experience": "11 Years", "fees": 1100 },
   { "id": 19, "name": "Dr. Kabir Ahmed", "specialty": "orthopedics", "image": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg", "experience": "13 Years", "fees": 1300 },
   { "id": 20, "name": "Dr. Sabrina Islam", "specialty": "eye-care", "image": "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg", "experience": "7 Years", "fees": 800 },
   { "id": 21, "name": "Dr. Morshed Alam", "specialty": "cardiology", "image": "https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg", "experience": "12 Years", "fees": 1400 },
-  { "id": 22, "name": "Dr. Sumaiya Akter", "specialty": "dental", "image": "https://images.pexels.com/photos/3845860/pexels-photo-3845860.jpeg", "experience": "9 Years", "fees": 850 },
+  { "id": 22, "name": "Dr. Sumaiya Akter", "specialty": "dental-care", "image": "https://images.pexels.com/photos/3845860/pexels-photo-3845860.jpeg", "experience": "9 Years", "fees": 850 },
   { "id": 23, "name": "Dr. Zaidul Islam", "specialty": "neurology", "image": "https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg", "experience": "8 Years", "fees": 1200 },
   { "id": 24, "name": "Dr. Habiba Khatun", "specialty": "pediatrics", "image": "https://images.pexels.com/photos/4173239/pexels-photo-4173239.jpeg", "experience": "5 Years", "fees": 600 }
-]
 ]

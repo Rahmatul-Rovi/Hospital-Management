@@ -17,19 +17,32 @@ const FindDoctors = () => {
     const selectedCategory = queryParams.get("category");
 
     useEffect(() => {
-        fetch('doctors.json')
-            .then(res => res.json())
-            .then(data => {
-                setDoctors(data);
-                // Logic: Jodi URL-e category thake, tobe filter koro
-                if (selectedCategory) {
-                    const filtered = data.filter(doc => doc.specialty.toLowerCase() === selectedCategory.toLowerCase());
-                    setFilteredDoctors(filtered);
-                } else {
-                    setFilteredDoctors(data); // Category na thakle shob dekhao
-                }
-            });
-    }, [selectedCategory]); // Category change holei abar filter hobe
+    // public folder theke load hobe
+    fetch('/doctors.json') 
+        .then(res => res.json())
+        .then(data => {
+            setDoctors(data);
+            
+            if (selectedCategory) {
+                // URL-er category (e.g. cardiology) ke clean koro
+                const cleanURLCategory = selectedCategory.toLowerCase().trim();
+
+                const filtered = data.filter(doc => {
+                    // JSON-er specialty keo clean koro match koranor jonno
+                    const docSpec = doc.specialty.toLowerCase().replace(/\s+/g, '-').trim();
+                    return docSpec === cleanURLCategory;
+                });
+                
+                setFilteredDoctors(filtered);
+            } else {
+                setFilteredDoctors(data);
+            }
+        })
+        .catch(err => {
+            console.error("Data load hoyni:", err);
+            setFilteredDoctors([]);
+        });
+}, [selectedCategory]);
 
     const handleBooking = async (e) => {
         e.preventDefault();
