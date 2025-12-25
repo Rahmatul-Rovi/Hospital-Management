@@ -51,29 +51,30 @@ const Navbar = () => {
               <p className="text-[10px] opacity-80">{user.email}</p>
             </div>
 
-            <div className="avatar">
-              <div className="w-10 rounded-full ring ring-white ring-offset-base-100 ring-offset-2">
-                <img src={user.photoURL || "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"} alt="profile" />
-              </div>
+            {/* --- Updated Avatar with Dropdown --- */}
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar ring ring-white ring-offset-2">
+                <div className="w-10 rounded-full">
+                  <img src={user.photoURL || "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"} alt="profile" />
+                </div>
+              </label>
+              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-2xl bg-white text-blue-900 rounded-box w-52 border border-gray-200">
+                <li className="font-bold p-2 text-blue-600 border-b border-gray-100">{user.displayName || "User Profile"}</li>
+                <li><Link to="/profile" className="hover:bg-blue-50 py-3">My Profile</Link></li>
+                <li><Link to="/dashboard" className="hover:bg-blue-50 py-3">Dashboard</Link></li>
+                <li className="mt-2 border-t border-gray-100">
+                  <button onClick={handleLogOut} className="text-red-500 font-bold hover:bg-red-50">Logout</button>
+                </li>
+              </ul>
             </div>
+            {/* ------------------------------------- */}
 
-            <button
-              onClick={handleLogOut}
-              className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 shadow-md active:scale-95"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-              </svg>
-              Logout
-            </button>
           </div>
         ) : (
           <div className="flex items-center gap-2">
-            {/* Login Button */}
             <Link to="/login" className="btn btn-ghost text-white border-white hover:bg-white hover:text-blue-600 rounded-full px-5 btn-sm font-bold">
               Login
             </Link>
-            {/* Register Button - Highlighted */}
             <Link to="/register" className="btn bg-white text-blue-600 border-none hover:bg-yellow-400 hover:text-black rounded-full px-5 btn-sm font-bold shadow-md">
               Register
             </Link>

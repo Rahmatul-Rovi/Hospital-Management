@@ -7,6 +7,7 @@ import Dashboard from "../pages/Dashboard";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import FindDoctors from "../pages/FindDoctors";
+import Profile from "../pages/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+      {
+        path: '/profile',
+        element: <PrivateRoute> <Profile></Profile> </PrivateRoute>
+      }
     ],
   },
 ]);
