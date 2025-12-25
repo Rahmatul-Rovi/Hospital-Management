@@ -8,6 +8,7 @@ import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import FindDoctors from "../pages/FindDoctors";
 import Profile from "../pages/Profile";
+import BookingPage from "../pages/BookingPage";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +38,11 @@ export const router = createBrowserRouter([
       {
         path: '/profile',
         element: <PrivateRoute> <Profile></Profile> </PrivateRoute>
-      }
+      },
+      {
+    path: "/book-appointment/:id",
+    element: <PrivateRoute> <BookingPage></BookingPage> </PrivateRoute>
+}
     ],
   },
 ]);

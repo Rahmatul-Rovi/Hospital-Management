@@ -100,32 +100,39 @@ const Home = () => {
       </section>
 
       {/* 4. Services Section */}
-      <section ref={servicesRef} className="bg-blue-50/50 py-24 rounded-[4rem]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 italic">Our Medical Services</h2>
-            <div className="w-24 h-2 bg-blue-500 mx-auto mt-4 rounded-full"></div>
-          </div>
+     <section ref={servicesRef} className="bg-blue-50/50 py-24 rounded-[4rem]">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-5xl font-bold text-gray-800 italic">Our Medical Services</h2>
+      <div className="w-24 h-2 bg-blue-500 mx-auto mt-4 rounded-full"></div>
+    </div>
+    
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {[
+        { title: "Cardiology", desc: "Expert cardiac care for your healthy heart.", icon: "❤️", category: "cardiology" },
+        { title: "Neurology", desc: "Advanced treatment for brain and nerves.", icon: "🧠", category: "neurology" },
+        { title: "Dental Care", desc: "Modern technology for your perfect smile.", icon: "🦷", category: "dental" },
+        { title: "Pediatrics", desc: "Specialized healthcare for your children.", icon: "👶", category: "pediatrics" },
+        { title: "Orthopedics", desc: "Expert bone and joint surgery solutions.", icon: "🦴", category: "orthopedics" },
+        { title: "Eye Care", desc: "Comprehensive eye exams and surgeries.", icon: "👁️", category: "eye-care" }
+      ].map((service, idx) => (
+        <div key={idx} className="bg-white p-8 rounded-3xl border border-gray-100 hover:border-blue-400 shadow-md hover:shadow-2xl transition-all group">
+          <div className="text-5xl mb-6 group-hover:scale-110 transition-transform">{service.icon}</div>
+          <h3 className="text-2xl font-bold mb-4 text-gray-800">{service.title}</h3>
+          <p className="text-gray-500 leading-relaxed mb-6">{service.desc}</p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { title: "Cardiology", desc: "Expert cardiac care for your healthy heart.", icon: "❤️" },
-              { title: "Neurology", desc: "Advanced treatment for brain and nerves.", icon: "🧠" },
-              { title: "Dental Care", desc: "Modern technology for your perfect smile.", icon: "🦷" },
-              { title: "Pediatrics", desc: "Specialized healthcare for your children.", icon: "👶" },
-              { title: "Orthopedics", desc: "Expert bone and joint surgery solutions.", icon: "🦴" },
-              { title: "Eye Care", desc: "Comprehensive eye exams and surgeries.", icon: "👁️" }
-            ].map((service, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-3xl border border-gray-100 hover:border-blue-400 shadow-md hover:shadow-2xl transition-all group">
-                <div className="text-5xl mb-6 group-hover:scale-110 transition-transform">{service.icon}</div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-800">{service.title}</h3>
-                <p className="text-gray-500 leading-relaxed mb-6">{service.desc}</p>
-                <button className="text-blue-600 font-bold hover:underline">Explore More →</button>
-              </div>
-            ))}
-          </div>
+          {/* Eikhane Link use kora hoyeche jate FindDoctors page-e filter niye jay */}
+          <Link 
+            to={`/appointments?category=${service.category}`} 
+            className="text-blue-600 font-bold hover:underline inline-block"
+          >
+            Explore More →
+          </Link>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* 5. Contact Section */}
       <section ref={contactRef} className="max-w-7xl mx-auto px-6">
