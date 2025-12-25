@@ -1,0 +1,30 @@
+
+[
+  {
+    "id": 1,
+    "name": "Dr. Rahmatul Rovi",
+    "specialty": "Cardiologist",
+    "experience": "10 years",
+    "image": "/images/rahmatul.jpg",
+    "fees": 1000,
+    "rating": 4.9
+  },
+  {
+    "id": 2,
+    "name": "Dr. Anfal Ratul",
+    "specialty": "Neurologist",
+    "experience": "12 years",
+    "image": "/images/anfal.webp",
+    "fees": 1200,
+    "rating": 4.8
+  },
+  {
+    "id": 3,
+    "name": "Dr. Ahmed Rayhan",
+    "specialty": "Pediatrician",
+    "experience": "8 years",
+    "image": "https://t4.ftcdn.net/jpg/03/20/52/31/360_F_320523164_L7raauGi99GuWnmLa1pPgcK18RBOdtqZ.jpg",
+    "fees": 800,
+    "rating": 4.7
+  }
+]

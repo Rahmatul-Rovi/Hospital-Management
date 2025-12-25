@@ -6,6 +6,7 @@ import Appointments from "../pages/Appointments";
 import Dashboard from "../pages/Dashboard";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
+import FindDoctors from "../pages/FindDoctors";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/appointments",
-        element: <Appointments />,
+        element: <PrivateRoute> <FindDoctors></FindDoctors> </PrivateRoute>,
       },
       {
         path: "/login",
@@ -32,10 +33,6 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
-      {
-        path: "/appointment",
-        element: <PrivateRoute></PrivateRoute>
-      }
     ],
   },
 ]);
