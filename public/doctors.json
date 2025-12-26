@@ -2,9 +2,9 @@
 
  
  [
-  { "id": 1, "name": "Dr. Ariful Islam", "specialty": "cardiology", "image": "https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg", "experience": "10 Years", "fees": 1000 },
-  { "id": 2, "name": "Dr. Sarah Ahmed", "specialty": "dental-care", "image": "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg", "experience": "8 Years", "fees": 800 },
-  { "id": 3, "name": "Dr. Kamrul Hasan", "specialty": "neurology", "image": "https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg", "experience": "12 Years", "fees": 1500 },
+  { "id": 1, "name": "Dr. Ariful Islam", "specialty": "cardiology", "image": "./images/anfal.webp", "experience": "10 Years", "fees": 1000 },
+  { "id": 2, "name": "Dr. Sarah Ahmed", "specialty": "dental-care", "image": "./images/fem1.jpg", "experience": "8 Years", "fees": 800 },
+  { "id": 3, "name": "Dr. Kamrul Hasan", "specialty": "neurology", "image": "./images/rahmatul.jpg", "experience": "12 Years", "fees": 1500 },
   { "id": 4, "name": "Dr. Nilufa Yasmin", "specialty": "cardiology", "image": "https://images.pexels.com/photos/4173239/pexels-photo-4173239.jpeg", "experience": "15 Years", "fees": 1200 },
   { "id": 5, "name": "Dr. Rakib Hasan", "specialty": "pediatrics", "image": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg", "experience": "7 Years", "fees": 700 },
   { "id": 6, "name": "Dr. Anika Tabassum", "specialty": "eye-care", "image": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg", "experience": "9 Years", "fees": 900 },
