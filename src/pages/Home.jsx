@@ -49,7 +49,7 @@ const Home = () => {
               </Link>
               <button 
                 onClick={() => scrollToSection(servicesRef)}
-                className="btn btn-outline btn-lg text-white rounded-full px-10 hover:bg-white hover:text-blue-700 transition-all border-2"
+                className="btn btn-outline btn-lg text-white  px-10 hover:bg-white hover:text-blue-700 transition-all border-2"
               >
                 Our Services
               </button>
@@ -95,7 +95,7 @@ const Home = () => {
             <li className="flex items-center gap-3"><span className="text-blue-500 font-bold">★</span> 24/7 Support</li>
             <li className="flex items-center gap-3"><span className="text-blue-500 font-bold">★</span> Online Booking</li>
           </ul>
-          <Link to={dashboardPath} className="btn btn-primary rounded-full px-10 shadow-lg border-none">View My Dashboard</Link>
+          <Link to={dashboardPath} className="btn btn-primary  px-10 shadow-lg border-none">View My Dashboard</Link>
         </div>
       </section>
 
