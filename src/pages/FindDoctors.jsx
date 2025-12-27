@@ -1,23 +1,21 @@
 import { useEffect, useState, useContext } from "react";
-import { useLocation } from "react-router-dom"; // Filter-er jonno lagbe
+import { useLocation } from "react-router-dom"; 
 import { AuthContext } from "../providers/AuthProvider";
 import { db } from "../firebase/firebase.config";
 import { collection, addDoc } from "firebase/firestore";
-import Swal from "sweetalert2"; // Professional alert-er jonno
+import Swal from "sweetalert2"; 
 
 const FindDoctors = () => {
     const [doctors, setDoctors] = useState([]);
-    const [filteredDoctors, setFilteredDoctors] = useState([]); // Filtered list-er jonno state
+    const [filteredDoctors, setFilteredDoctors] = useState([]); 
     const [selectedDoctor, setSelectedDoctor] = useState(null);
     const { user } = useContext(AuthContext);
 
-    // URL theke category dhorar jonno
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const selectedCategory = queryParams.get("category");
 
     useEffect(() => {
-    // public folder theke load hobe
     fetch('/doctors.json') 
         .then(res => res.json())
         .then(data => {

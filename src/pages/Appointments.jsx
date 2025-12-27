@@ -1,5 +1,4 @@
 const Appointments = () => {
-  // Doctor-der list (Pore amra eta database theke anbo)
   const doctors = [
     { id: 1, name: "Dr. Sarah Khan", expert: "Cardiologist", image: "https://i.ibb.co/L8N7p7v/doctor1.jpg" },
     { id: 2, name: "Dr. Ahmed Ullah", expert: "Neurologist", image: "https://i.ibb.co/7XjNf8x/doctor2.jpg" },

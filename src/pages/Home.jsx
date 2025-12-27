@@ -12,10 +12,10 @@ const Home = () => {
     window.scrollTo({
       top: elementRef.current.offsetTop - 80,
       behavior: "smooth",
+      
     });
   };
 
-  // Logic: Login na thakle Register page-e pathabo
   const protectedPath = user ? "/appointments" : "/register";
   const dashboardPath = user ? "/dashboard" : "/register";
 
@@ -43,13 +43,12 @@ const Home = () => {
               Book world-class specialists in just a few clicks.
             </p>
             <div className="flex gap-5 justify-center lg:justify-start">
-              {/* Login na thakle register-e pathabe */}
-              <Link to={protectedPath} className="btn btn-warning btn-lg shadow-xl px-10 rounded-full hover:scale-105 transition-all border-none font-bold">
+              <Link to={protectedPath} className="btn btn-warning btn-lg shadow-xl px-10 rounded-xl hover:scale-105 transition-all border-none font-bold">
                 Make Appointment
               </Link>
               <button 
                 onClick={() => scrollToSection(servicesRef)}
-                className="btn btn-outline btn-lg text-white  px-10 hover:bg-white hover:text-blue-700 transition-all border-2"
+                className="btn btn-outline btn-lg text-white rounded-xl px-10 hover:bg-white hover:text-blue-700 transition-all border-2"
               >
                 Our Services
               </button>
@@ -121,9 +120,7 @@ const Home = () => {
           <h3 className="text-2xl font-bold mb-4 text-gray-800">{service.title}</h3>
           <p className="text-gray-500 leading-relaxed mb-6">{service.desc}</p>
           
-          {/* Eikhane Link use kora hoyeche jate FindDoctors page-e filter niye jay */}
-         // Home.jsx er Link ta erom koro
-{/* Home.jsx er card link update koro */}
+
 <Link 
   to={`/appointments?category=${service.title.toLowerCase().replace(/\s+/g, '-')}`} 
   className="text-blue-600 font-bold hover:underline inline-flex items-center gap-1 transition-all hover:gap-2"
@@ -163,7 +160,7 @@ const Home = () => {
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20"></div>
         <h2 className="text-3xl md:text-5xl font-bold mb-6 italic">Ready to prioritize your health?</h2>
         <p className="text-xl mb-10 opacity-80">Book your first appointment today and get 20% off.</p>
-        <Link to={protectedPath} className="btn btn-warning btn-wide btn-lg rounded-full font-bold shadow-xl border-none">Book Now</Link>
+        <Link to={protectedPath} className="btn btn-warning btn-wide btn-lg rounded-xl font-bold shadow-xl border-none">Book Now</Link>
       </div>
     </div>
   );
