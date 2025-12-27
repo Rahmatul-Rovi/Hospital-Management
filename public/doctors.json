@@ -20,10 +20,10 @@
   { "id": 16, "name": "Dr. Nusrat Jahan", "specialty": "dental-care", "image": "./images/fem7.jpg", "experience": "4 Years", "fees": 400 },
   { "id": 17, "name": "Dr. Ahsan Habib", "specialty": "neurology", "image": "./images/male8.jpg", "experience": "22 Years", "fees": 3000 },
   { "id": 18, "name": "Dr. Farhana Yasmin", "specialty": "pediatrics", "image": "./images/fem8.jpg", "experience": "11 Years", "fees": 1100 },
-  { "id": 19, "name": "Dr. Kabir Ahmed", "specialty": "orthopedics", "image": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg", "experience": "13 Years", "fees": 1300 },
-  { "id": 20, "name": "Dr. Sabrina Islam", "specialty": "eye-care", "image": "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg", "experience": "7 Years", "fees": 800 },
+  { "id": 19, "name": "Dr. Kabir Ahmed", "specialty": "orthopedics", "image": "./images/male9.jpg", "experience": "13 Years", "fees": 1300 },
+  { "id": 20, "name": "Dr. Sabrina Islam", "specialty": "eye-care", "image": "./images/fem9.jpg", "experience": "7 Years", "fees": 800 },
   { "id": 21, "name": "Dr. Morshed Alam", "specialty": "cardiology", "image": "https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg", "experience": "12 Years", "fees": 1400 },
-  { "id": 22, "name": "Dr. Sumaiya Akter", "specialty": "dental-care", "image": "https://images.pexels.com/photos/3845860/pexels-photo-3845860.jpeg", "experience": "9 Years", "fees": 850 },
+  { "id": 22, "name": "Dr. Sumaiya Akter", "specialty": "dental-care", "image": "./images/fem10.jpg", "experience": "9 Years", "fees": 850 },
   { "id": 23, "name": "Dr. Zaidul Islam", "specialty": "neurology", "image": "https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg", "experience": "8 Years", "fees": 1200 },
-  { "id": 24, "name": "Dr. Habiba Khatun", "specialty": "pediatrics", "image": "https://images.pexels.com/photos/4173239/pexels-photo-4173239.jpeg", "experience": "5 Years", "fees": 600 }
+  { "id": 24, "name": "Dr. Habiba Khatun", "specialty": "pediatrics", "image": "./images/fem11.jpg", "experience": "5 Years", "fees": 600 }
 ]
