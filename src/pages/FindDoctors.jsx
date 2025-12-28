@@ -169,7 +169,7 @@ const FindDoctors = () => {
                                         setViewDoctor(doctor);
                                         document.getElementById('details_modal').showModal();
                                     }}
-                                    className="btn btn-outline btn-info btn-sm w-full rounded-full lowercase italic font-normal hover:bg-info hover:text-white"
+                                    className="btn btn-outline btn-info btn-sm w-full rounded-xl lowercase italic font-normal hover:bg-info hover:text-white"
                                 >
                                     View full details
                                 </button>
@@ -179,7 +179,7 @@ const FindDoctors = () => {
                                         setSelectedDoctor(doctor);
                                         document.getElementById('booking_modal').showModal();
                                     }}
-                                    className="btn bg-blue-600 hover:bg-blue-700 border-none text-white w-full rounded-full font-bold shadow-lg"
+                                    className="btn bg-blue-600 hover:bg-blue-700 border-none text-white w-full rounded-xl font-bold shadow-lg"
                                 >
                                     Book Appointment Now
                                 </button>
