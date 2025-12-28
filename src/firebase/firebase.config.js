@@ -7,12 +7,12 @@ import { getFirestore } from "firebase/firestore"; // Database er jonno
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCs5SdSYqh2p1RE6Qojud6nYjSo909hmQ0",
-  authDomain: "hospital-management-db24f.firebaseapp.com",
-  projectId: "hospital-management-db24f",
-  storageBucket: "hospital-management-db24f.firebasestorage.app",
-  messagingSenderId: "935681116498",
-  appId: "1:935681116498:web:919609f07353159b55128b"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase
