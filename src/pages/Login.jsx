@@ -1,16 +1,13 @@
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { Link, useNavigate, useLocation } from "react-router-dom"; // useLocation add kora hoyeche
+import { Link, useNavigate, useLocation } from "react-router-dom"; 
 
 const Login = () => {
   const { login, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation(); // Location dhorlam
+  const location = useLocation(); 
 
-  // User jekhan theke ashche shei path dhorbe, na thakle home-e pathabe
   const from = location.state || "/";
-
-  // Email-Password Login Handler
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -19,7 +16,6 @@ const Login = () => {
     login(email, password)
       .then((result) => {
         console.log("Logged In:", result.user);
-        // navigate("/") er jaygay redirect logic:
         navigate(from, { replace: true }); 
       })
       .catch((error) => {
@@ -33,7 +29,6 @@ const Login = () => {
     googleLogin()
       .then((result) => {
         console.log("Google Login Success:", result.user);
-        // navigate("/") er jaygay redirect logic:
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -69,7 +64,7 @@ const Login = () => {
             />
           </div>
 
-          <button type="submit" className="btn bg-blue-600 hover:bg-blue-700 border-none text-white font-bold w-full mt-4 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+          <button type="submit" className="btn bg-blue-600 hover:bg-blue-700 border-none rounded-xl text-white font-bold w-full mt-4 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105">
             Login
           </button>
         </form>
