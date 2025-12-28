@@ -71,10 +71,10 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="flex items-center gap-2">
-            <Link to="/login" className="btn btn-ghost text-white border-white hover:bg-white hover:text-blue-600 rounded-full px-5 btn-sm font-bold">
+            <Link to="/login" className="btn btn-ghost text-white rounded-sm border-white hover:bg-white hover:text-blue-600 rounded-full px-5 btn-sm font-bold">
               Login
             </Link>
-            <Link to="/register" className="btn bg-white text-blue-600 border-none hover:bg-yellow-400 hover:text-black rounded-full px-5 btn-sm font-bold shadow-md">
+            <Link to="/register" className="btn bg-white text-blue-600 rounded-sm border-none hover:bg-yellow-400 hover:text-black rounded-full px-5 btn-sm font-bold shadow-md">
               Register
             </Link>
           </div>
