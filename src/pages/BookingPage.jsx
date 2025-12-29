@@ -4,12 +4,12 @@ import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const BookingPage = () => {
-    const { id } = useParams(); // URL theke doctor ID nibo
+    const { id } = useParams(); // Doctors ID from URL 
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     
-    // Doctor ID theke info khunje ber kora (Tomar doctor list theke)
-    // Real project-e eita database theke ashe
+    // Doctors List from Doctor ID 
+    // Database here from Real project
     const [bookingDate, setBookingDate] = useState("");
     const [phone, setPhone] = useState("");
 
@@ -27,7 +27,7 @@ const BookingPage = () => {
 
         console.log("Saving Appointment:", appointmentInfo);
         
-        // Eikhane Firebase ba API diye save korte hobe
+        // Eikhane Firebase ba API diye save korsi
         Swal.fire({
             title: "Success!",
             text: "Your Appointment is Booked!",
