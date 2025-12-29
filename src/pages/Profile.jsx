@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
-import Swal from "sweetalert2"; // SweetAlert use korle eita install thaka lagbe (npm install sweetalert2)
+import Swal from "sweetalert2"; 
 
 const Profile = () => {
   const { user } = useContext(AuthContext);

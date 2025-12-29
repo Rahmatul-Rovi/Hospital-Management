@@ -107,7 +107,7 @@ const Dashboard = () => {
 
     return (
         <div className="max-w-7xl mx-auto p-6 min-h-screen animate-fadeIn">
-            <h2 className="text-5xl font-black text-white mb-10 italic tracking-tighter">My <span className="text-blue-500">Appointments</span></h2>
+            <h2 className="text-5xl font-black text-center text-blue-500 mb-10 italic tracking-tighter">My <span className="text-blue-500">Appointments</span></h2>
             
             <div className="bg-[#111827] border border-white/5 rounded-[3rem] p-8 shadow-3xl backdrop-blur-3xl">
                 <div className="flex justify-between items-center mb-10">

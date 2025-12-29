@@ -47,7 +47,7 @@ const FindDoctors = () => {
                     );
                 }
 
-                // 3. Price Filter (Fees matching)
+                // 3. Price Filter
                 result = result.filter(doc => doc.fees <= maxFees);
 
                 setFilteredDoctors(result);
@@ -56,7 +56,7 @@ const FindDoctors = () => {
                 console.error("Data load hoyni:", err);
                 setFilteredDoctors([]);
             });
-    }, [selectedCategory, searchTerm, maxFees]); // Ei 3 ta change hoilei filter hobe
+    }, [selectedCategory, searchTerm, maxFees]); 
 
     const handleBooking = async (e) => {
         e.preventDefault();
