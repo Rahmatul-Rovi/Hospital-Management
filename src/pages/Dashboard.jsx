@@ -33,7 +33,7 @@ const Dashboard = () => {
         });
     };
 
-    // --- 2. Submit Review Function ---
+    // --- 2. Submit Review Function (Fixed Logic) ---
     const handleReviewSubmit = async (e) => {
         e.preventDefault();
         const rating = e.target.rating.value;
@@ -50,10 +50,12 @@ const Dashboard = () => {
             Swal.fire("Success!", "Thank you for your feedback!", "success");
             document.getElementById('review_modal').close();
             
-            setMyAppointments(myAppointments.map(app => 
-                app.id === selectedAppoint.id ? { ...app, status: "Reviewed" } : app
-            ));
+            // ✨ EKHANE FIX KORA HOYECHE: 
+            // Review submit hole list theke oi appointment-ta remove hoye jabe
+            setMyAppointments(prevAppointments => prevAppointments.filter(app => app.id !== selectedAppoint.id));
+
         } catch (error) {
+            console.error("Review Error:", error);
             Swal.fire("Error", "Feedback save hoyni!", "error");
         }
     };
@@ -68,7 +70,6 @@ const Dashboard = () => {
                     );
                     const querySnapshot = await getDocs(q);
                     
-                    // 🕒 Ajker date calculation (Today)
                     const today = new Date();
                     today.setHours(0, 0, 0, 0); 
 
@@ -76,22 +77,22 @@ const Dashboard = () => {
                         const appointData = docSnap.data();
                         const id = docSnap.id;
                         
-                        // Appointment date-ke object-e convert kora compare korar jonno
                         const appointDate = new Date(appointData.appointmentDate);
                         appointDate.setHours(0, 0, 0, 0);
 
-                        // ✨ SMART LOGIC: Jodi date par hoye jay ar status 'Pending' thake
                         let currentStatus = appointData.status;
                         if (appointDate < today && currentStatus === "Pending") {
                             currentStatus = "Completed";
-                            // Database-eo update kore rakhte paro jate porer bar 'Completed' e ashe
                             updateDoc(doc(db, "appointments", id), { status: "Completed" });
                         }
 
                         return { id, ...appointData, status: currentStatus };
                     });
 
-                    setMyAppointments(data);
+                    // ✨ LOGIN ER SOMOY-O JATE REVIEWED GULO NA DEKHAY:
+                    const visibleAppointments = data.filter(app => app.status !== "Reviewed");
+                    setMyAppointments(visibleAppointments);
+
                 } catch (error) {
                     console.error("Error fetching: ", error);
                 } finally {
@@ -110,7 +111,7 @@ const Dashboard = () => {
             
             <div className="bg-[#111827] border border-white/5 rounded-[3rem] p-8 shadow-3xl backdrop-blur-3xl">
                 <div className="flex justify-between items-center mb-10">
-                    <h3 className="text-2xl font-bold text-gray-400">Total Bookings</h3>
+                    <h3 className="text-2xl font-bold text-gray-400">Active Bookings</h3>
                     <div className="bg-blue-600/10 text-blue-500 px-6 py-2 rounded-full font-black text-sm border border-blue-500/20">{myAppointments.length} Found</div>
                 </div>
                 
@@ -142,7 +143,6 @@ const Dashboard = () => {
                                     <td>
                                         <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${
                                             appointment.status === 'Pending' ? 'border-yellow-500/50 text-yellow-500 bg-yellow-500/5' : 
-                                            appointment.status === 'Reviewed' ? 'border-purple-500/50 text-purple-500 bg-purple-500/5' :
                                             'border-green-500/50 text-green-500 bg-green-500/5'
                                         }`}>
                                             {appointment.status}
@@ -159,10 +159,6 @@ const Dashboard = () => {
                                             >
                                                 Rate Doctor
                                             </button>
-                                        ) : appointment.status === "Reviewed" ? (
-                                            <div className="flex items-center justify-center gap-2 text-green-500 font-bold text-xs uppercase">
-                                                <span>✓</span> Reviewed
-                                            </div>
                                         ) : (
                                             <button 
                                                 onClick={() => handleDelete(appointment.id)}
@@ -176,10 +172,13 @@ const Dashboard = () => {
                             ))}
                         </tbody>
                     </table>
+
+                    {myAppointments.length === 0 && (
+                        <div className="text-center py-20 text-gray-600 italic">No active appointments to show.</div>
+                    )}
                 </div>
             </div>
 
-            {/* --- ⭐ STAR REVIEW MODAL --- */}
             <dialog id="review_modal" className="modal modal-bottom sm:modal-middle backdrop-blur-sm">
                 <div className="modal-box bg-[#111827] border border-white/10 rounded-[3rem] p-10">
                     <div className="text-center mb-8">
