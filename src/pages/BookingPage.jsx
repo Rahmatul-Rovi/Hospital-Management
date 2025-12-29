@@ -27,13 +27,13 @@ const BookingPage = () => {
 
         console.log("Saving Appointment:", appointmentInfo);
         
-        // Eikhane Firebase ba API diye save korsi
+        // Firebase and Api added
         Swal.fire({
             title: "Success!",
             text: "Your Appointment is Booked!",
             icon: "success"
         });
-        navigate("/dashboard"); // Save hoye gele dashboard-e niye jabe
+        navigate("/dashboard"); 
     };
 
     return (

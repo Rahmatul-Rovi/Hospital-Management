@@ -134,26 +134,48 @@ const Home = () => {
 </section>
 
       {/* 5. Contact Section */}
-      <section ref={contactRef} className="max-w-7xl mx-auto px-6">
-        <div className="bg-[#1d232a] rounded-[3rem] p-10 md:p-16 shadow-2xl flex flex-col lg:flex-row gap-12">
-          <div className="lg:w-1/2 text-white">
-            <h2 className="text-4xl font-bold mb-6">Need Help? <br/><span className="text-blue-400 font-black italic">Contact Us</span></h2>
-            <div className="space-y-6 opacity-80 mt-10">
-              <p>📍 123 Health Street, Dhaka, BD</p>
-              <p>📞 +880 123 456 789</p>
-              <p>✉️ support@careplus.com</p>
-            </div>
-          </div>
-          <div className="lg:w-1/2 bg-white/5 backdrop-blur-md rounded-[2rem] p-8 border border-white/10">
-            <form className="space-y-4">
-              <input type="text" placeholder="Your Name" className="input input-bordered w-full rounded-xl bg-white/10 text-white" />
-              <input type="email" placeholder="Email" className="input input-bordered w-full rounded-xl bg-white/10 text-white" />
-              <textarea placeholder="Message" className="textarea textarea-bordered w-full rounded-xl bg-white/10 text-white h-24"></textarea>
-              <button type="button" className="btn btn-warning w-full rounded-xl font-bold border-none">Send Message</button>
-            </form>
-          </div>
-        </div>
-      </section>
+     <section ref={contactRef} className="max-w-7xl mx-auto px-6">
+  <div className="bg-[#1d232a] rounded-[3rem] p-10 md:p-16 shadow-2xl flex flex-col lg:flex-row gap-12">
+    <div className="lg:w-1/2 text-white">
+      <h2 className="text-4xl font-bold mb-6">Need Help? <br/><span className="text-blue-400 font-black italic">Contact Us</span></h2>
+      <div className="space-y-6 opacity-80 mt-10">
+        <p>📍 123 Health Street, Dhaka, BD</p>
+        <p>📞 +880 123 456 789</p>
+        <p>✉️ support@careplus.com</p>
+      </div>
+    </div>
+    
+    <div className="lg:w-1/2 bg-white/5 backdrop-blur-md rounded-[2rem] p-8 border border-white/10">
+      <form onSubmit={(e) => { e.preventDefault(); alert('Message Sent Successfully!'); e.target.reset(); }} className="space-y-4">
+        
+        <input 
+          type="text" 
+          placeholder="Your Name" 
+          className="input input-bordered w-full rounded-xl bg-white/10 text-white" 
+          required 
+        />
+        
+        <input 
+          type="email" 
+          placeholder="Email" 
+          className="input input-bordered w-full rounded-xl bg-white/10 text-white" 
+          required 
+        />
+        
+        <textarea 
+          placeholder="Message" 
+          className="textarea textarea-bordered w-full rounded-xl bg-white/10 text-white h-24" 
+          required
+        ></textarea>
+        
+        <button type="submit" className="btn btn-warning w-full rounded-xl font-bold border-none shadow-lg hover:shadow-yellow-500/20">
+          Send Message
+        </button>
+        
+      </form>
+    </div>
+  </div>
+</section>
 
       {/* 6. Call to Action */}
       <div className="bg-blue-600 rounded-3xl p-10 md:p-20 text-center text-white max-w-6xl mx-auto shadow-2xl relative overflow-hidden">
