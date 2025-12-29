@@ -33,7 +33,7 @@ const Dashboard = () => {
         });
     };
 
-    // --- 2. Submit Review Function (Fixed Logic) ---
+    // --- 2. Submit Review Function ---
     const handleReviewSubmit = async (e) => {
         e.preventDefault();
         const rating = e.target.rating.value;
@@ -50,8 +50,7 @@ const Dashboard = () => {
             Swal.fire("Success!", "Thank you for your feedback!", "success");
             document.getElementById('review_modal').close();
             
-            // ✨ EKHANE FIX KORA HOYECHE: 
-            // Review submit hole list theke oi appointment-ta remove hoye jabe
+            // Review submit  for appointment
             setMyAppointments(prevAppointments => prevAppointments.filter(app => app.id !== selectedAppoint.id));
 
         } catch (error) {
@@ -89,7 +88,7 @@ const Dashboard = () => {
                         return { id, ...appointData, status: currentStatus };
                     });
 
-                    // ✨ LOGIN ER SOMOY-O JATE REVIEWED GULO NA DEKHAY:
+                    // Do not show without Login
                     const visibleAppointments = data.filter(app => app.status !== "Reviewed");
                     setMyAppointments(visibleAppointments);
 
