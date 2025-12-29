@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Navbar from "./components/navbar";
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
+      <Navbar></Navbar>
       
       <div className="container mx-auto p-6">
         <Outlet />
