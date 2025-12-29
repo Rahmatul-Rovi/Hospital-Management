@@ -8,7 +8,7 @@ const Dashboard = () => {
     const { user } = useContext(AuthContext);
     const [myAppointments, setMyAppointments] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [selectedAppoint, setSelectedAppoint] = useState(null); // Reviewer jonno select kora
+    const [selectedAppoint, setSelectedAppoint] = useState(null);
 
     // --- 1. Delete (Cancel) Function ---
     const handleDelete = async (id) => {
@@ -44,13 +44,12 @@ const Dashboard = () => {
             await updateDoc(appointRef, {
                 rating: rating,
                 feedback: feedback,
-                status: "Reviewed" // Status update jate double review na hoy
+                status: "Reviewed" 
             });
 
             Swal.fire("Success!", "Thank you for your feedback!", "success");
             document.getElementById('review_modal').close();
             
-            // UI Update (Refresh charai)
             setMyAppointments(myAppointments.map(app => 
                 app.id === selectedAppoint.id ? { ...app, status: "Reviewed" } : app
             ));
@@ -68,10 +67,30 @@ const Dashboard = () => {
                         where("patientEmail", "==", user.email)
                     );
                     const querySnapshot = await getDocs(q);
-                    const data = querySnapshot.docs.map(doc => ({
-                        id: doc.id,
-                        ...doc.data()
-                    }));
+                    
+                    // 🕒 Ajker date calculation (Today)
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0); 
+
+                    const data = querySnapshot.docs.map(docSnap => {
+                        const appointData = docSnap.data();
+                        const id = docSnap.id;
+                        
+                        // Appointment date-ke object-e convert kora compare korar jonno
+                        const appointDate = new Date(appointData.appointmentDate);
+                        appointDate.setHours(0, 0, 0, 0);
+
+                        // ✨ SMART LOGIC: Jodi date par hoye jay ar status 'Pending' thake
+                        let currentStatus = appointData.status;
+                        if (appointDate < today && currentStatus === "Pending") {
+                            currentStatus = "Completed";
+                            // Database-eo update kore rakhte paro jate porer bar 'Completed' e ashe
+                            updateDoc(doc(db, "appointments", id), { status: "Completed" });
+                        }
+
+                        return { id, ...appointData, status: currentStatus };
+                    });
+
                     setMyAppointments(data);
                 } catch (error) {
                     console.error("Error fetching: ", error);
@@ -83,117 +102,109 @@ const Dashboard = () => {
         fetchAppointments();
     }, [user?.email]);
 
-    if (loading) return <div className="flex justify-center items-center h-screen text-white text-2xl animate-pulse">Loading Appointments...</div>;
+    if (loading) return <div className="flex justify-center items-center h-screen text-blue-500 text-2xl animate-pulse font-black italic">Loading Dashboard...</div>;
 
     return (
-        <div className="max-w-7xl mx-auto p-6 min-h-screen">
-            <h2 className="text-4xl font-black text-blue-500 mb-10 italic tracking-tight">User Dashboard</h2>
+        <div className="max-w-7xl mx-auto p-6 min-h-screen animate-fadeIn">
+            <h2 className="text-5xl font-black text-white mb-10 italic tracking-tighter">My <span className="text-blue-500">Appointments</span></h2>
             
-            <div className="bg-[#1d232a] border border-gray-800 rounded-[2rem] p-8 shadow-2xl">
-                <div className="flex justify-between items-center mb-8">
-                    <h3 className="text-2xl font-bold text-white">Appointments List</h3>
-                    <div className="badge badge-info badge-outline px-4 py-3 font-bold">{myAppointments.length} Bookings</div>
+            <div className="bg-[#111827] border border-white/5 rounded-[3rem] p-8 shadow-3xl backdrop-blur-3xl">
+                <div className="flex justify-between items-center mb-10">
+                    <h3 className="text-2xl font-bold text-gray-400">Total Bookings</h3>
+                    <div className="bg-blue-600/10 text-blue-500 px-6 py-2 rounded-full font-black text-sm border border-blue-500/20">{myAppointments.length} Found</div>
                 </div>
                 
                 <div className="overflow-x-auto">
-                    <table className="table w-full border-separate border-spacing-y-2">
-                        <thead className="text-gray-500 uppercase text-xs tracking-widest">
+                    <table className="table w-full border-separate border-spacing-y-3">
+                        <thead className="text-gray-600 uppercase text-xs tracking-[0.2em]">
                             <tr>
-                                <th>#</th>
-                                <th>Doctor Info</th>
-                                <th>Date</th>
-                                <th>Phone</th>
-                                <th>Status</th>
-                                <th className="text-center">Actions</th>
+                                <th className="bg-transparent">Doctor</th>
+                                <th className="bg-transparent">Date</th>
+                                <th className="bg-transparent">Status</th>
+                                <th className="bg-transparent text-center">Action</th>
                             </tr>
                         </thead>
-                        <tbody className="text-gray-300 font-medium">
-                            {myAppointments.map((appointment, index) => (
-                                <tr key={appointment.id} className="bg-[#161b22] hover:bg-gray-800 transition-all">
-                                    <td className="rounded-l-2xl font-bold text-blue-500">{index + 1}</td>
-                                    <td>
-                                        <div className="font-bold text-white">{appointment.doctorName}</div>
-                                        <div className="text-xs text-gray-500 uppercase">{appointment.specialty || "Specialist"}</div>
+                        <tbody className="text-gray-300">
+                            {myAppointments.map((appointment) => (
+                                <tr key={appointment.id} className="bg-white/5 hover:bg-white/10 transition-all group">
+                                    <td className="rounded-l-[2rem] p-6">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black">
+                                                {appointment.doctorName?.charAt(0)}
+                                            </div>
+                                            <div>
+                                                <div className="font-black text-white text-lg">{appointment.doctorName}</div>
+                                                <div className="text-xs text-gray-500 font-bold uppercase tracking-widest">{appointment.specialty || "Generalist"}</div>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td>{appointment.appointmentDate}</td>
-                                    <td>{appointment.phoneNumber}</td>
+                                    <td className="font-bold text-gray-400">{appointment.appointmentDate}</td>
                                     <td>
-                                        <span className={`badge py-3 px-4 rounded-lg font-bold border-none ${
-                                            appointment.status === 'Pending' ? 'bg-yellow-500/10 text-yellow-500' : 
-                                            appointment.status === 'Reviewed' ? 'bg-purple-500/10 text-purple-500' :
-                                            'bg-green-500/10 text-green-500'
+                                        <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${
+                                            appointment.status === 'Pending' ? 'border-yellow-500/50 text-yellow-500 bg-yellow-500/5' : 
+                                            appointment.status === 'Reviewed' ? 'border-purple-500/50 text-purple-500 bg-purple-500/5' :
+                                            'border-green-500/50 text-green-500 bg-green-500/5'
                                         }`}>
                                             {appointment.status}
                                         </span>
                                     </td>
-                                    <td className="rounded-r-2xl text-center">
-                                        <div className="flex justify-center gap-3">
-                                            {/* Status logic: Completed hole Review button, Reviewed hole nothing, Pending hole Cancel */}
-                                            {appointment.status === "Completed" ? (
-                                                <button 
-                                                    onClick={() => {
-                                                        setSelectedAppoint(appointment);
-                                                        document.getElementById('review_modal').showModal();
-                                                    }}
-                                                    className="btn btn-sm bg-blue-600 hover:bg-blue-700 border-none text-white rounded-full px-6"
-                                                >
-                                                    Give Review
-                                                </button>
-                                            ) : appointment.status === "Reviewed" ? (
-                                                <span className="text-xs italic text-gray-500">Feedback Submitted</span>
-                                            ) : (
-                                                <button 
-                                                    onClick={() => handleDelete(appointment.id)}
-                                                    className="btn btn-sm btn-outline btn-error rounded-full px-6 hover:shadow-lg hover:shadow-red-500/20"
-                                                >
-                                                    Cancel
-                                                </button>
-                                            )}
-                                        </div>
+                                    <td className="rounded-r-[2rem] text-center">
+                                        {appointment.status === "Completed" ? (
+                                            <button 
+                                                onClick={() => {
+                                                    setSelectedAppoint(appointment);
+                                                    document.getElementById('review_modal').showModal();
+                                                }}
+                                                className="btn btn-sm bg-blue-600 hover:bg-blue-700 border-none text-white rounded-xl px-6 font-black"
+                                            >
+                                                Rate Doctor
+                                            </button>
+                                        ) : appointment.status === "Reviewed" ? (
+                                            <div className="flex items-center justify-center gap-2 text-green-500 font-bold text-xs uppercase">
+                                                <span>✓</span> Reviewed
+                                            </div>
+                                        ) : (
+                                            <button 
+                                                onClick={() => handleDelete(appointment.id)}
+                                                className="btn btn-sm btn-ghost text-red-500 hover:bg-red-500/10 rounded-xl px-6 font-bold"
+                                            >
+                                                Cancel
+                                            </button>
+                                        )}
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    
-                    {myAppointments.length === 0 && (
-                        <div className="text-center py-24 bg-black/20 rounded-3xl border border-dashed border-gray-800">
-                            <p className="text-gray-600 text-xl italic">You haven't booked any specialists yet.</p>
-                            <button className="btn btn-link text-blue-500 mt-2">Find a doctor now</button>
-                        </div>
-                    )}
                 </div>
             </div>
 
             {/* --- ⭐ STAR REVIEW MODAL --- */}
-            <dialog id="review_modal" className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box bg-[#1d232a] border border-gray-700 rounded-3xl p-8">
-                    <h3 className="font-bold text-3xl text-blue-400 text-center italic font-serif">Rate Experience</h3>
-                    <p className="text-center py-4 text-gray-400 font-medium">
-                        Share your feedback for <br/>
-                        <span className="text-white text-lg font-bold"> {selectedAppoint?.doctorName} </span>
-                    </p>
+            <dialog id="review_modal" className="modal modal-bottom sm:modal-middle backdrop-blur-sm">
+                <div className="modal-box bg-[#111827] border border-white/10 rounded-[3rem] p-10">
+                    <div className="text-center mb-8">
+                        <div className="w-20 h-20 bg-blue-600/20 rounded-3xl flex items-center justify-center text-4xl mx-auto mb-4">⭐</div>
+                        <h3 className="font-black text-3xl text-white italic">Rate Your Experience</h3>
+                        <p className="text-gray-500 mt-2 font-medium">How was your session with <br/> <span className="text-blue-400">{selectedAppoint?.doctorName}</span>?</p>
+                    </div>
                     
-                    <form onSubmit={handleReviewSubmit} className="space-y-6">
-                        {/* Interactive Star Rating */}
-                        <div className="rating rating-lg flex justify-center gap-2">
-                            <input type="radio" name="rating" value="1" className="mask mask-star-2 bg-yellow-400" />
-                            <input type="radio" name="rating" value="2" className="mask mask-star-2 bg-yellow-400" />
-                            <input type="radio" name="rating" value="3" className="mask mask-star-2 bg-yellow-400" />
-                            <input type="radio" name="rating" value="4" className="mask mask-star-2 bg-yellow-400" />
-                            <input type="radio" name="rating" value="5" className="mask mask-star-2 bg-yellow-400" defaultChecked />
+                    <form onSubmit={handleReviewSubmit} className="space-y-8">
+                        <div className="rating rating-lg flex justify-center gap-3">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                                <input key={star} type="radio" name="rating" value={star} className="mask mask-star-2 bg-yellow-400" defaultChecked={star === 5} />
+                            ))}
                         </div>
                         
                         <textarea 
                             name="feedback" 
-                            className="textarea textarea-bordered w-full h-32 bg-black/30 border-gray-600 focus:border-blue-500 text-white rounded-2xl" 
-                            placeholder="Write about the doctor's service and behavior..." 
+                            className="textarea bg-white/5 border-white/10 w-full h-32 rounded-[1.5rem] focus:border-blue-500 text-white p-6 placeholder:text-gray-700" 
+                            placeholder="Tell us about the service..." 
                             required
                         ></textarea>
 
-                        <div className="modal-action flex justify-between">
-                            <button type="button" onClick={() => document.getElementById('review_modal').close()} className="btn btn-ghost text-red-500 font-bold">Discard</button>
-                            <button type="submit" className="btn bg-blue-600 hover:bg-blue-700 border-none text-white px-10 rounded-full font-bold shadow-lg shadow-blue-600/30">Submit Review</button>
+                        <div className="flex gap-4">
+                            <button type="button" onClick={() => document.getElementById('review_modal').close()} className="btn flex-1 bg-white/5 hover:bg-white/10 border-none text-gray-400 rounded-2xl h-16 font-black">Cancel</button>
+                            <button type="submit" className="btn flex-1 bg-blue-600 hover:bg-blue-700 border-none text-white rounded-2xl h-16 font-black shadow-xl shadow-blue-600/20">Submit</button>
                         </div>
                     </form>
                 </div>
