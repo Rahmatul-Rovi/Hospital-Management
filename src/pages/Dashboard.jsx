@@ -98,7 +98,6 @@ const Dashboard = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-6 md:p-6 min-h-screen animate-fadeIn">
-            {/* Header: Responsive font size */}
             <h2 className="text-3xl md:text-5xl font-black text-center text-blue-500 mb-6 md:mb-10 italic tracking-tighter">
                 My <span className="text-blue-500">Appointments</span>
             </h2>
@@ -111,7 +110,6 @@ const Dashboard = () => {
                     </div>
                 </div>
                 
-                {/* Desktop View: Table (Visible on MD and larger) */}
                 <div className="hidden md:block overflow-x-auto">
                     <table className="table w-full border-separate border-spacing-y-3">
                         <thead className="text-gray-600 uppercase text-xs tracking-[0.2em]">
@@ -171,7 +169,6 @@ const Dashboard = () => {
                     </table>
                 </div>
 
-                {/* Mobile View: Cards (Hidden on MD and larger) */}
                 <div className="md:hidden space-y-4">
                     {myAppointments.map((appointment) => (
                         <div key={appointment.id} className="bg-white/5 border border-white/5 rounded-2xl p-5 space-y-4">

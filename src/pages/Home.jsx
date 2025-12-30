@@ -37,21 +37,17 @@ const Home = () => {
       />
     </div>
 
-    {/* Text Section: Mobile-e center, boro screen-e left */}
     <div className="text-center lg:text-left w-full lg:w-1/2">
-      {/* text-4xl kora hoyeche mobile-er jonno jate font size boro screen-e 7xl hoy */}
       <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-tight">
         Compassionate Care <br /> 
         <span className="text-yellow-400 drop-shadow-lg text-4xl sm:text-5xl md:text-6xl italic">Near You.</span>
       </h1>
       
-      {/* text-lg mobile-e shundor lage */}
       <p className="py-4 md:py-6 text-lg md:text-xl opacity-90 max-w-lg leading-relaxed mx-auto lg:mx-0">
         Expert medical advice and health management at your fingertips. 
         Book world-class specialists in just a few clicks.
       </p>
 
-      {/* Buttons Section: Mobile-e column ba row manage kora */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-4">
         <Link to={protectedPath} className="btn btn-warning btn-md md:btn-lg shadow-xl px-6 md:px-10 rounded-xl hover:scale-105 transition-all border-none font-bold">
           Make Appointment
@@ -70,7 +66,6 @@ const Home = () => {
 
       {/* 2. Stats Section */}
       <div className="relative -mt-20 md:-mt-40 z-10 px-4">
-  {/* DaisyUI 'stats' class-er bodole normal flex/grid use kora better mobile-er jonno */}
   <div className="grid grid-cols-1 md:grid-cols-3 gap-0 shadow-2xl bg-white rounded-[2rem] md:rounded-3xl overflow-hidden max-w-5xl mx-auto py-6 md:py-8">
     
     {/* 1. Expert Doctors */}
