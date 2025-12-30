@@ -69,25 +69,33 @@ const Home = () => {
 </div>
 
       {/* 2. Stats Section */}
-      <div className="relative -mt-40 z-10 px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 stats shadow-2xl bg-white rounded-3xl overflow-hidden max-w-5xl mx-auto py-8">
-          <div className="stat place-items-center p-8">
-            <div className="stat-title text-gray-500 font-semibold uppercase tracking-wider text-xs">Expert Doctors</div>
-            <div className="stat-value text-blue-600 text-5xl">50+</div>
-            <div className="stat-desc font-medium text-gray-500">Qualified Specialists</div>
-          </div>
-          <div className="stat place-items-center border-y md:border-y-0 md:border-x p-8">
-            <div className="stat-title text-gray-500 font-semibold uppercase tracking-wider text-xs">Happy Patients</div>
-            <div className="stat-value text-green-500 text-5xl">10k+</div>
-            <div className="stat-desc font-medium text-gray-500">Verified Reviews</div>
-          </div>
-          <div className="stat place-items-center p-8">
-            <div className="stat-title text-gray-500 font-semibold uppercase tracking-wider text-xs">Emergency Rooms</div>
-            <div className="stat-value text-red-500 text-5xl">24/7</div>
-            <div className="stat-desc font-medium text-gray-500">Instant Support</div>
-          </div>
-        </div>
-      </div>
+      <div className="relative -mt-20 md:-mt-40 z-10 px-4">
+  {/* DaisyUI 'stats' class-er bodole normal flex/grid use kora better mobile-er jonno */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-0 shadow-2xl bg-white rounded-[2rem] md:rounded-3xl overflow-hidden max-w-5xl mx-auto py-6 md:py-8">
+    
+    {/* 1. Expert Doctors */}
+    <div className="flex flex-col items-center p-8 text-center border-b md:border-b-0 md:border-r border-gray-100">
+      <div className="text-gray-500 font-semibold uppercase tracking-wider text-xs">Expert Doctors</div>
+      <div className="text-blue-600 text-4xl md:text-5xl font-black mt-2">50+</div>
+      <div className="font-medium text-gray-400 text-sm mt-1">Qualified Specialists</div>
+    </div>
+
+    {/* 2. Happy Patients */}
+    <div className="flex flex-col items-center p-8 text-center border-b md:border-b-0 md:border-r border-gray-100">
+      <div className="text-gray-500 font-semibold uppercase tracking-wider text-xs">Happy Patients</div>
+      <div className="text-green-500 text-4xl md:text-5xl font-black mt-2">10k+</div>
+      <div className="font-medium text-gray-400 text-sm mt-1">Verified Reviews</div>
+    </div>
+
+    {/* 3. Emergency Support */}
+    <div className="flex flex-col items-center p-8 text-center">
+      <div className="text-gray-500 font-semibold uppercase tracking-wider text-xs">Emergency Rooms</div>
+      <div className="text-red-500 text-4xl md:text-5xl font-black mt-2">24/7</div>
+      <div className="font-medium text-gray-400 text-sm mt-1">Instant Support</div>
+    </div>
+
+  </div>
+</div>
 
       {/* 3. About Us Section */}
       <section className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
