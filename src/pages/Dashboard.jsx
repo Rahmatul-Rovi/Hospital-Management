@@ -49,10 +49,7 @@ const Dashboard = () => {
 
             Swal.fire("Success!", "Thank you for your feedback!", "success");
             document.getElementById('review_modal').close();
-            
-            // Review submit  for appointment
             setMyAppointments(prevAppointments => prevAppointments.filter(app => app.id !== selectedAppoint.id));
-
         } catch (error) {
             console.error("Review Error:", error);
             Swal.fire("Error", "Feedback save hoyni!", "error");
@@ -68,14 +65,12 @@ const Dashboard = () => {
                         where("patientEmail", "==", user.email)
                     );
                     const querySnapshot = await getDocs(q);
-                    
                     const today = new Date();
                     today.setHours(0, 0, 0, 0); 
 
                     const data = querySnapshot.docs.map(docSnap => {
                         const appointData = docSnap.data();
                         const id = docSnap.id;
-                        
                         const appointDate = new Date(appointData.appointmentDate);
                         appointDate.setHours(0, 0, 0, 0);
 
@@ -84,14 +79,11 @@ const Dashboard = () => {
                             currentStatus = "Completed";
                             updateDoc(doc(db, "appointments", id), { status: "Completed" });
                         }
-
                         return { id, ...appointData, status: currentStatus };
                     });
 
-                    // Do not show without Login
                     const visibleAppointments = data.filter(app => app.status !== "Reviewed");
                     setMyAppointments(visibleAppointments);
-
                 } catch (error) {
                     console.error("Error fetching: ", error);
                 } finally {
@@ -105,16 +97,22 @@ const Dashboard = () => {
     if (loading) return <div className="flex justify-center items-center h-screen text-blue-500 text-2xl animate-pulse font-black italic">Loading Dashboard...</div>;
 
     return (
-        <div className="max-w-7xl mx-auto p-6 min-h-screen animate-fadeIn">
-            <h2 className="text-5xl font-black text-center text-blue-500 mb-10 italic tracking-tighter">My <span className="text-blue-500">Appointments</span></h2>
+        <div className="max-w-7xl mx-auto px-4 py-6 md:p-6 min-h-screen animate-fadeIn">
+            {/* Header: Responsive font size */}
+            <h2 className="text-3xl md:text-5xl font-black text-center text-blue-500 mb-6 md:mb-10 italic tracking-tighter">
+                My <span className="text-blue-500">Appointments</span>
+            </h2>
             
-            <div className="bg-[#111827] border border-white/5 rounded-[3rem] p-8 shadow-3xl backdrop-blur-3xl">
-                <div className="flex justify-between items-center mb-10">
-                    <h3 className="text-2xl font-bold text-gray-400">Active Bookings</h3>
-                    <div className="bg-blue-600/10 text-blue-500 px-6 py-2 rounded-full font-black text-sm border border-blue-500/20">{myAppointments.length} Found</div>
+            <div className="bg-[#111827] border border-white/5 rounded-2xl md:rounded-[3rem] p-5 md:p-8 shadow-3xl backdrop-blur-3xl">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 md:mb-10">
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-400">Active Bookings</h3>
+                    <div className="bg-blue-600/10 text-blue-500 px-6 py-2 rounded-full font-black text-xs md:text-sm border border-blue-500/20">
+                        {myAppointments.length} Found
+                    </div>
                 </div>
                 
-                <div className="overflow-x-auto">
+                {/* Desktop View: Table (Visible on MD and larger) */}
+                <div className="hidden md:block overflow-x-auto">
                     <table className="table w-full border-separate border-spacing-y-3">
                         <thead className="text-gray-600 uppercase text-xs tracking-[0.2em]">
                             <tr>
@@ -171,23 +169,74 @@ const Dashboard = () => {
                             ))}
                         </tbody>
                     </table>
-
-                    {myAppointments.length === 0 && (
-                        <div className="text-center py-20 text-gray-600 italic">No active appointments to show.</div>
-                    )}
                 </div>
+
+                {/* Mobile View: Cards (Hidden on MD and larger) */}
+                <div className="md:hidden space-y-4">
+                    {myAppointments.map((appointment) => (
+                        <div key={appointment.id} className="bg-white/5 border border-white/5 rounded-2xl p-5 space-y-4">
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-xl">
+                                    {appointment.doctorName?.charAt(0)}
+                                </div>
+                                <div>
+                                    <div className="font-black text-white text-lg">{appointment.doctorName}</div>
+                                    <div className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">{appointment.specialty || "Generalist"}</div>
+                                </div>
+                            </div>
+                            
+                            <div className="flex justify-between items-center bg-black/20 p-3 rounded-xl">
+                                <div>
+                                    <p className="text-[10px] text-gray-500 uppercase font-bold">Date</p>
+                                    <p className="text-sm font-bold text-gray-300">{appointment.appointmentDate}</p>
+                                </div>
+                                <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase border ${
+                                    appointment.status === 'Pending' ? 'border-yellow-500/50 text-yellow-500 bg-yellow-500/5' : 
+                                    'border-green-500/50 text-green-500 bg-green-500/5'
+                                }`}>
+                                    {appointment.status}
+                                </span>
+                            </div>
+
+                            <div className="pt-2">
+                                {appointment.status === "Completed" ? (
+                                    <button 
+                                        onClick={() => {
+                                            setSelectedAppoint(appointment);
+                                            document.getElementById('review_modal').showModal();
+                                        }}
+                                        className="btn btn-md w-full bg-blue-600 hover:bg-blue-700 border-none text-white rounded-xl font-black"
+                                    >
+                                        Rate Doctor
+                                    </button>
+                                ) : (
+                                    <button 
+                                        onClick={() => handleDelete(appointment.id)}
+                                        className="btn btn-md w-full bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-500 rounded-xl font-bold"
+                                    >
+                                        Cancel Appointment
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {myAppointments.length === 0 && (
+                    <div className="text-center py-20 text-gray-600 italic">No active appointments to show.</div>
+                )}
             </div>
 
             <dialog id="review_modal" className="modal modal-bottom sm:modal-middle backdrop-blur-sm">
-                <div className="modal-box bg-[#111827] border border-white/10 rounded-[3rem] p-10">
+                <div className="modal-box bg-[#111827] border border-white/10 rounded-t-[2rem] sm:rounded-[3rem] p-6 md:p-10">
                     <div className="text-center mb-8">
-                        <div className="w-20 h-20 bg-blue-600/20 rounded-3xl flex items-center justify-center text-4xl mx-auto mb-4">⭐</div>
-                        <h3 className="font-black text-3xl text-white italic">Rate Your Experience</h3>
-                        <p className="text-gray-500 mt-2 font-medium">How was your session with <br/> <span className="text-blue-400">{selectedAppoint?.doctorName}</span>?</p>
+                        <div className="w-16 h-16 md:w-20 md:h-20 bg-blue-600/20 rounded-3xl flex items-center justify-center text-3xl md:text-4xl mx-auto mb-4">⭐</div>
+                        <h3 className="font-black text-2xl md:text-3xl text-white italic">Rate Your Experience</h3>
+                        <p className="text-gray-500 mt-2 font-medium text-sm md:text-base">How was your session with <br/> <span className="text-blue-400">{selectedAppoint?.doctorName}</span>?</p>
                     </div>
                     
-                    <form onSubmit={handleReviewSubmit} className="space-y-8">
-                        <div className="rating rating-lg flex justify-center gap-3">
+                    <form onSubmit={handleReviewSubmit} className="space-y-6 md:space-y-8">
+                        <div className="rating rating-md md:rating-lg flex justify-center gap-2 md:gap-3">
                             {[1, 2, 3, 4, 5].map((star) => (
                                 <input key={star} type="radio" name="rating" value={star} className="mask mask-star-2 bg-yellow-400" defaultChecked={star === 5} />
                             ))}
@@ -195,14 +244,14 @@ const Dashboard = () => {
                         
                         <textarea 
                             name="feedback" 
-                            className="textarea bg-white/5 border-white/10 w-full h-32 rounded-[1.5rem] focus:border-blue-500 text-white p-6 placeholder:text-gray-700" 
+                            className="textarea bg-white/5 border-white/10 w-full h-28 md:h-32 rounded-[1.5rem] focus:border-blue-500 text-white p-4 md:p-6 placeholder:text-gray-700" 
                             placeholder="Tell us about the service..." 
                             required
                         ></textarea>
 
-                        <div className="flex gap-4">
-                            <button type="button" onClick={() => document.getElementById('review_modal').close()} className="btn flex-1 bg-white/5 hover:bg-white/10 border-none text-gray-400 rounded-2xl h-16 font-black">Cancel</button>
-                            <button type="submit" className="btn flex-1 bg-blue-600 hover:bg-blue-700 border-none text-white rounded-2xl h-16 font-black shadow-xl shadow-blue-600/20">Submit</button>
+                        <div className="flex flex-col-reverse sm:flex-row gap-4">
+                            <button type="button" onClick={() => document.getElementById('review_modal').close()} className="btn flex-1 bg-white/5 hover:bg-white/10 border-none text-gray-400 rounded-2xl h-14 md:h-16 font-black">Cancel</button>
+                            <button type="submit" className="btn flex-1 bg-blue-600 hover:bg-blue-700 border-none text-white rounded-2xl h-14 md:h-16 font-black shadow-xl shadow-blue-600/20">Submit</button>
                         </div>
                     </form>
                 </div>
