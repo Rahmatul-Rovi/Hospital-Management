@@ -23,39 +23,50 @@ const Home = () => {
     <div className="space-y-28 mb-20 animate-fadeIn overflow-x-hidden">
       
       {/* 1. Hero Section */}
-      <div className="hero min-h-[85vh] rounded-3xl overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-800 text-white shadow-2xl mt-5">
-        <div className="hero-content flex-col lg:flex-row-reverse p-10 gap-12 max-w-7xl">
-          <div className="relative group lg:w-1/2">
-            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-blue-400 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-            <img 
-              src="https://img.freepik.com/free-photo/doctors-day-handsome-smiling-doctor-white-lab-coat-glasses-with-stethoscope-pointing-finger-left_140725-162883.jpg" 
-              className="w-full rounded-2xl shadow-2xl border-4 border-white/10 relative" 
-              alt="Doctor"
-            />
-          </div>
-          <div className="text-center lg:text-left lg:w-1/2">
-            <h1 className="text-5xl md:text-7xl font-black leading-tight">
-              Compassionate Care <br /> 
-              <span className="text-yellow-400 drop-shadow-lg text-6xl italic">Near You.</span>
-            </h1>
-            <p className="py-6 text-xl opacity-90 max-w-lg leading-relaxed mx-auto lg:mx-0">
-              Expert medical advice and health management at your fingertips. 
-              Book world-class specialists in just a few clicks.
-            </p>
-            <div className="flex gap-5 justify-center lg:justify-start">
-              <Link to={protectedPath} className="btn btn-warning btn-lg shadow-xl px-10 rounded-xl hover:scale-105 transition-all border-none font-bold">
-                Make Appointment
-              </Link>
-              <button 
-                onClick={() => scrollToSection(servicesRef)}
-                className="btn btn-outline btn-lg text-white rounded-xl px-10 hover:bg-white hover:text-blue-700 transition-all border-2"
-              >
-                Our Services
-              </button>
-            </div>
-          </div>
-        </div>
+    <div className="hero min-h-[85vh] rounded-3xl overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-800 text-white shadow-2xl mt-5">
+  {/* max-w-7xl ar mx-auto add kora jate boro screen-e shundor thake */}
+  <div className="hero-content flex-col lg:flex-row-reverse p-6 md:p-10 gap-8 lg:gap-12 max-w-7xl mx-auto">
+    
+    {/* Image Section: Mobile-e width full thakbe, boro screen-e half */}
+    <div className="relative group w-full lg:w-1/2">
+      <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-blue-400 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+      <img 
+        src="https://img.freepik.com/free-photo/doctors-day-handsome-smiling-doctor-white-lab-coat-glasses-with-stethoscope-pointing-finger-left_140725-162883.jpg" 
+        className="w-full rounded-2xl shadow-2xl border-4 border-white/10 relative object-cover" 
+        alt="Doctor"
+      />
+    </div>
+
+    {/* Text Section: Mobile-e center, boro screen-e left */}
+    <div className="text-center lg:text-left w-full lg:w-1/2">
+      {/* text-4xl kora hoyeche mobile-er jonno jate font size boro screen-e 7xl hoy */}
+      <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-tight">
+        Compassionate Care <br /> 
+        <span className="text-yellow-400 drop-shadow-lg text-4xl sm:text-5xl md:text-6xl italic">Near You.</span>
+      </h1>
+      
+      {/* text-lg mobile-e shundor lage */}
+      <p className="py-4 md:py-6 text-lg md:text-xl opacity-90 max-w-lg leading-relaxed mx-auto lg:mx-0">
+        Expert medical advice and health management at your fingertips. 
+        Book world-class specialists in just a few clicks.
+      </p>
+
+      {/* Buttons Section: Mobile-e column ba row manage kora */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-4">
+        <Link to={protectedPath} className="btn btn-warning btn-md md:btn-lg shadow-xl px-6 md:px-10 rounded-xl hover:scale-105 transition-all border-none font-bold">
+          Make Appointment
+        </Link>
+        <button 
+          onClick={() => scrollToSection(servicesRef)}
+          className="btn btn-outline btn-md md:btn-lg text-white rounded-xl px-6 md:px-10 hover:bg-white hover:text-blue-700 transition-all border-2"
+        >
+          Our Services
+        </button>
       </div>
+    </div>
+
+  </div>
+</div>
 
       {/* 2. Stats Section */}
       <div className="relative -mt-40 z-10 px-4">
